@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %} My cart{% endblock %}
+
+{% block content %}
+<style type="text/css">
+    body {
+        background-image: url('https://t3.ftcdn.net/jpg/01/79/46/70/240_F_179467072_NlfgeVIoDyCtHOLjVgorvna7orVw08ID.jpg');
+        height: 800px;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+    
+    }
+</style>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h4>Items in my cart</h4><hr>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>SN</th>
+                        <th>Product</th>
+                        <th>Rate</th>
+                        <th>Quantity</th>
+                        <th>Subtotal</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cp in cart.cartproduct_set.all %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{cp.product.title}}</td>
+                        <td>{{cp.rate}}</td>
+                        <td>{{cp.quantity}}KG</td>
+                        <td>{{cp.subtotal}}</td>
+                        <td>
+                            <a href="{% url 'app:managecart' cp.id %}?action=inc" class="btn btn-primary"> + </a>
+                            <a href="{% url 'app:managecart' cp.id %}?action=dcr" class="btn btn-warning"> - </a>
+                            <a href="{% url 'app:managecart' cp.id %}?action=rmv" class="btn btn-danger"> x </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <th colspan="4" class="text-right">Total</th>
+                        <th>Rs. {{cart.total}}</th>
+                        {% if cart.cartproduct_set.all %}
+                        <th><a href="{% url 'app:emptycart' %}">Empty Cart</a></th>
+                        {% endif %}
+                    </tr>
+                    {% if cart.cartproduct_set.all %}
+                    <tr>
+                        <th><a class="btn btn-info" href="{% url 'app:checkout' %}"> Checkout </a></th>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+{% endblock %}

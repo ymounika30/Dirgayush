@@ -1,0 +1,6 @@
+
+<form method="post" action="">
+    {% csrf_token %}
+    <h1>are you sure to delete account</h1>
+<button><a class="dropdown-item" href="/customerdelete/{{user.id}}">Delete Account</a></button>
+</form>

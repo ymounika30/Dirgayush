@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block title %}Order Detail{% endblock  %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <h3>Order Detail</h3>
+            <hr>
+            <p><span class="font-weight-bold">Order ID: </span> #ORDER_{{ord_obj.id}}</p>
+             <h4>Ordered Items</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>SN</th>
+                        <th>Item</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cp in ord_obj.cart.cartproduct_set.all %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td><a target="_blank"
+                                href="{% url 'app:productdetail' cp.product.sku %}">{{cp.product.title}}({{cp.product.id}})</a>
+                        </td>
+                        
+                    </tr>
+                    {% endfor %}
+                    
+                </tbody>
+            </table>
+          
+        </div>
+    </div>
+</div>
+{% endblock %}

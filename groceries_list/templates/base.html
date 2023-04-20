@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+        <a class="navbar-brand" href="{% url 'app:home' %}">Groceries</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                
+                {% if request.user.customer %}
+
+                <a class="nav-link" href="{% url 'app:home' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'app:allproducts' %}">Categories</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'app:mycart' %}">Cart</a>
+            </li>
+            
+          
+               
+                
+               
+                <li class="nav-item">
+                <a class="nav-link" href="{% url 'app:customerprofile' %}">My Profile</a>
+            </li>
+                <li class="nav-item"></li>
+                    <a class="nav-link" href="{% url 'app:contact' %}">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'app:customerlogout' %}">Logout</a>
+                    
+                </li>
+                <li class="nav-item">
+                    
+                    <a class="nav-link" href="{% url 'app:userListView' %}">Delete My account</a>
+                </li>
+               
+               
+              
+               
+                {% elif  request.user.is_superuser %}
+               
+                
+
+           <li>
+    <a class="nav-link" href="{% url 'app:adminhome' %}">Home <span class="sr-only">(current)</span></a>
+</li>
+
+<li class="nav-item">
+   
+    <a class="nav-link" href="{% url 'app:adminuserlist' %}">USERS</a>
+</li>
+
+
+
+<li class="nav-item">
+   
+    <a class="nav-link" href="{% url 'app:adminorderlist' %}">payments</a>
+</li>
+
+
+<li class="nav-item">
+    
+    <a class="nav-link" href="{% url 'app:adminproductlist' %}">All Products</a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'app:adminfeedback' %}">Feed Back<span class="sr-only">(current)</span></a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'app:adminlogout' %}">Logout</a>
+    
+</li>
+{% else %}
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'app:customerregistration' %}">Register</a>
+    
+</li>
+<li class="nav-item">
+    
+    <a class="nav-link" href="{% url 'app:customerlogin' %}">Login</a>
+</li>
+                
+              
+            
+           
+           
+           
+        </ul>
+            {% endif %}
+        </div>
+        </div>
+        <li class="">
+    
+            <a class="" href="{% url 'app:adminlogin' %}">admin</a>
+        </li>
+        </nav>
+    <hr>
+
+   
+    {% block content %}
+    {% endblock %}
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+
+
+{% extends 'base.html' %}
+{% block title %}All Products{% endblock %}
+
+
+{% block content %}
+<div class="container"> 
+    <div class="row">
+        <div class="col-md-12">
+            
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Feedback ID</th>
+                        <th>Order ID</th>
+                        <th>Feedback</th>
+                        <th>Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for fm in form %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td><a href="{% url 'app:adminorderfeedbackdetail' fm.id %}">#ORDER_{{fm.id}}</a></td>
+                    <td>{{fm.feedback}}</td>
+                    <td>{{fm.rating}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

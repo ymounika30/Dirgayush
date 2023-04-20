@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}All Products{% endblock %}
+
+
+{% block content %}
+<div class="container"> 
+    <div class="row">
+        <div class="col-md-12">
+            <h3>All users list</h3><hr>
+            
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>SN</th>
+                        <th>USERS</th>
+                        <th>NAME</th>
+                        <th>joined at</th>
+                        <th>REMOVE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        {% for p in allusers %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        
+                        <td>{{p.user}}</td>
+                        
+                       
+                        <td>{{p.full_name}}</td>
+                        <td>{{p.joined_on}}</td>
+                        <td><a href="/userdelete/{{p.id}}" class="btn btn-danger btn-sm" >Delete</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

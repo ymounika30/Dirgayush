@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        
+        body {
+            background-image: url('https://t3.ftcdn.net/jpg/01/79/46/70/240_F_179467072_NlfgeVIoDyCtHOLjVgorvna7orVw08ID.jpg');
+            height: 800px;
+            background-repeat: no-repeat;
+            background-size: cover;
+    
+        
+        }
+        
+    </style>
+</head>
+<body style="text-align:center;">
+    <h1 style="font-family: Serif;padding: 20px; font-weight:bold;">Contact Details</h1>
+    <div style="font-family:Serif;font-weight:bold">
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Send">
+    </div>
+    </form>
+</body>
+</html>
+
+{% endblock %}

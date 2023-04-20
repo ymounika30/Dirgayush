@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block title %}{{product.title}}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h3>Product: {{product.title}}</h3><hr>
+    <div class="row">
+        <div class="col-md-4">
+            <img src="{{product.image.url}}" alt="" class="img-fluid">
+            <div class="row">
+                {% for pi in product.productimage_set.all %}
+                <div class="col-md-4 p-3">
+                    <a href="{{pi.image.url}}" target="_blank">
+                        <img src="{{pi.image.url}}" class="img-fluid" style="height: 100px; object-fit: contain;" alt="">
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h4>{{product.title}} </h4>
+            <h5>Category: {{product.category}}</h5>
+            <h5>Price: <strike>Rs. {{product.marked_price}}</strike> Rs. {{product.selling_price}}</h5>
+            
+            {% if product.quantity <= 1 %}
+            <h5 style="color:red;">Out of Stock</h5>
+            {% else %}
+                <a href="{% url 'app:addtocart' product.id %}" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a>
+            {% endif %}
+
+          
+           
+
+
+<!-- Button trigger modal -->
+
+
+<!-- Central Modal Small -->
+<div class="modal fade" id="centralModalSm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+aria-hidden="true">
+
+<!-- Change class .modal-sm to change the size of the modal -->
+<div class="modal-dialog modal-sm" role="document">
+
+
+<div class="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>product added successfully </p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Close</button>
+    
+  </div>
+</div>
+</div>
+</div> 
+          
+            <hr>
+            <hr>
+            <h1>Details</h1>
+            <p>{{product.description}}</p>
+
+            <hr>
+            
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        
+                        <th>Feedback</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in us %}
+                    <tr>
+                       
+                    <td>{{i.Feedback}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+
+    
+
+</div>
+{% endblock %}

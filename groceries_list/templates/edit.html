@@ -1,0 +1,23 @@
+
+{% extends 'base.html' %}
+
+{% block title %} product edit{% endblock %}
+
+{% block content %}
+
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <form action="" method="post">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" class="btn btn-success" value="Update">
+                <a href="{% url 'app:adminproductlist'%}" class="btn btn-info">Back</a>
+      </form>
+        </div>
+    </div>
+</div>
+</body>
+{% endblock %}

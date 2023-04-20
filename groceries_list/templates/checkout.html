@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}Checkout {% endblock %}
+
+{% block content %}
+<style>
+        
+    body {
+        background-image: url('https://t3.ftcdn.net/jpg/01/79/46/70/240_F_179467072_NlfgeVIoDyCtHOLjVgorvna7orVw08ID.jpg');
+        height: 800px;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+    
+    }
+    
+</style>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Items in the cart</h3>
+            <a href="{% url 'app:mycart' %}">Update Cart</a>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>SN</th>
+                        <th>Product</th>
+                        <th>Rate</th>
+                        <th>Quantity</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cp in cart.cartproduct_set.all %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{cp.product.title}}</td>
+                        <td>{{cp.rate}}</td>
+                        <td>{{cp.quantity}}</td>
+                        <td>{{cp.subtotal}}</td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <th colspan="4" class="text-right">Total</th>
+                        <th>Rs. {{cart.total}}</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <h3>Checkout Form</h3>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <p>order by <b>{{user}}</b></p>
+                {{form.as_p}}
+                
+               
+                <a href="{% url 'app:pay' %}" class="btn btn-outline-secondary"> <button class="btn btn-info">buy</button></a>
+            </form> 
+        </div>
+    </div>
+</div>
+</body>
+{% endblock %}

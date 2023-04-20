@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Add New Product{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <h3>add new category</h3>
+          
+            <hr>
+            
+            <hr>
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button class="btn btn-info">Add</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+

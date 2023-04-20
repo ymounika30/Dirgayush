@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}All Products{% endblock %}
+
+
+{% block content %}
+<div class="container"> 
+    <div class="row">
+        <div class="col-md-12">
+            <h3>All category list</h3><hr>
+            <a href="{% url 'app:admincategorycreate' %}" class="btn btn-success">Add New category</a>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>SN</th>
+                        <th>title</th>
+                        </tr>
+                </thead>
+                <tbody>
+                  {% for i in allcategorylist %}
+                    <tr>
+                        <td>{{i.id}}</td>
+                        <td>{{i.sku}}</td>
+                        
+                       
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
